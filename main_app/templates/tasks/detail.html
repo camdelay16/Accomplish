@@ -1,0 +1,87 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{% static 'css/tasks/task-detail.css' %}"
+/>
+{% endblock %} {% block content %}
+<section class="task-container">
+  <div class="card">
+    <div class="card-content">
+      <div class="card-img-priority">
+        <div class="card-img-container">
+          <img
+            src="{% static 'images/TaskImg.svg' %}"
+            alt=""
+            class="task-image"
+          />
+        </div>
+        <div id="priority">
+          <p>{{task.priority}}</p>
+        </div>
+      </div>
+      <div class="card-info">
+        <ul>
+          <li class="card-title">{{ task.task_name }}</li>
+          <li>{{task.due_date}}</li>
+          <li><small>{{ task.note }}</small></li>
+        </ul>
+      </div>
+    </div>
+    <div class="task-actions">
+      <a
+        href="{% url 'task-update' task.id %}"
+        class="btn warn"
+        >Edit</a
+      >
+      <a
+        href="{% url 'task-delete' task.id %}"
+        class="btn danger"
+        >Delete</a
+      >
+    </div>
+  </div>
+</section>
+<div class="subtask-toy-container">
+  <section class="subtask">
+    <div class="subsection-title">
+      <h2>Subtasks</h2>
+    </div>
+    <div class="subtask-card">
+      <form
+        action="{% url 'add-subtask' task.id %}"
+        method="post"
+        class="subsection-content"
+        autocomplete="off"
+      >
+        {% csrf_token %} {{ subtask_form.as_p }}
+        <button
+          type="submit"
+          class="btn submit"
+        >
+          Submit
+        </button>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Priority</th>
+            <th>Due Date</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for subtask in task.subtask_set.all %}
+          <tr>
+            <td>{{subtask.subtask_name}}</td>
+            <td>{{subtask.priority}}</td>
+            <td>{{subtask.due_date}}</td>
+            <td>{{ subtask.completed }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+{% endblock %}

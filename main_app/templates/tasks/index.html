@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{% static 'css/tasks/task-index.css' %}"
+/>
+{% endblock %} {% block content %}
+
+<section class="page-header">
+  <h1>All Tasks List</h1>
+</section>
+
+<section class="card-container">
+  {% for task in tasks %}
+  <div class="card">
+    <a href="{% url 'task-detail' task.id %}">
+      <div class="card-content">
+        <div class="card-img-priority">
+          <div class="card-img-container">
+            <img
+              src="{% static 'images/TaskImg.svg' %}"
+              alt=""
+              class="task-image"
+            />
+          </div>
+          <div id="priority">
+            <p>{{task.priority}}</p>
+          </div>
+        </div>
+        <div class="card-info">
+          <ul>
+            <li class="card-title">{{ task.task_name }}</li>
+            <li>{{task.due_date}}</li>
+            <li><small>{{ task.note }}</small></li>
+          </ul>
+        </div>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock %}

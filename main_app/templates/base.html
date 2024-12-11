@@ -1,0 +1,53 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href=""
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <title>Accomplish</title>
+    <link
+      rel="stylesheet"
+      href="{% static 'css/base.css' %}"
+    />
+    {% block head %} {% endblock %}
+  </head>
+  <body>
+    <header>
+      {% comment %} {% include 'navbar.html' %} {% endcomment %}
+      <nav>
+        <a href="/">
+          <img
+            src="{% static 'images/Accomplish_logo.svg' %}"
+            alt="Accomplish Logo"
+            id="Accomplish-logo"
+          />
+        </a>
+        <ul>
+          <li><a href="{% url 'task-index' %}">All Tasks</a></li>
+          <li><a href="{% url 'task-create' %}">Add Tasks</a></li>
+          <li><a href="{% url 'list-index' %}">All Lists</a></li>
+          <li><a href="{% url 'list-create' %}">Add Lists</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>{% block content %} {% endblock %}</main>
+  </body>
+</html>

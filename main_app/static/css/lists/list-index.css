@@ -1,0 +1,31 @@
+.card {
+  background-color: #396c91;
+  border-radius: 20px;
+  width: 300px;
+}
+
+.card-content {
+  color: #f3f2e6;
+  padding: 10px;
+  margin: 20px;
+}
+
+.card-info {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0px;
+  li {
+    list-style-type: none;
+    margin: 5px;
+  }
+}
+
+.card-title {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0.07rem;
+}
+
+.card-container {
+  margin: 20px;
+}

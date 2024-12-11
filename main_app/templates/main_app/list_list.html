@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{% static 'css/lists/list-index.css' %}"
+/>
+{% endblock %} {% block content %}
+
+<section class="page-header">
+  <h1>All Lists</h1>
+</section>
+
+<section class="card-container">
+  {% for list in list_list %}
+  <div class="card">
+    <a href="{% url 'list-detail' list.id %}">
+      <div class="card-content">
+        <h2>{{ list.list_name }}</h2>
+        <p><small>{{ list.description }}</small></p>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock %}

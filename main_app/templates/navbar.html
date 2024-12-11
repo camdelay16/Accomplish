@@ -1,0 +1,14 @@
+{% block nav %}
+<nav>
+  <a href="/">
+    <img
+      src="{% static 'images/Accomplish_logo.svg' %}"
+      alt="Accomplish Logo"
+    />
+  </a>
+  <ul>
+    <li><a href="{% url 'task-index' %}">All Tasks</a></li>
+    <li><a href="{% url 'about' %}">About</a></li>
+  </ul>
+</nav>
+{% endblock %}

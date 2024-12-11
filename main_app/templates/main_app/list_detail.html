@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{% static 'css/lists/list-detail.css' %}"
+/>
+{% endblock %} {% block content %}
+
+<div class="card">
+  <div class="card-content">
+    <h2>{{ list.list_name }}</h2>
+    <p>{{list.description}}</p>
+  </div>
+</div>
+<a
+  href=""
+  class="btn warn"
+  >Edit</a
+>
+<a
+  href=""
+  class="btn danger"
+  >Delete</a
+>
+
+{% endblock %}
