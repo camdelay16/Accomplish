@@ -2,6 +2,7 @@
   background-color: #396c91;
   border-radius: 20px;
   width: 300px;
+  gap: 20px;
 }
 
 .card-content {
@@ -33,6 +34,9 @@
   border-color: #f3f2e6;
   width: 75px;
   border-width: 3px;
+  p {
+    margin: 5px;
+  }
 }
 
 .card-img-priority {
@@ -59,4 +63,6 @@
 
 .card-container {
   margin: 20px;
+  display: grid;
+  gap: 20px;
 }

@@ -10,16 +10,49 @@
     <h2>{{ list.list_name }}</h2>
     <p>{{list.description}}</p>
   </div>
+  <div>
+    <a
+      href="{% url 'list-update' list.id %}"
+      class="btn warn"
+      >Edit</a
+    >
+    <a
+      href="{% url 'list-delete' list.id %}"
+      class="btn danger"
+      >Delete</a
+    >
+  </div>
 </div>
-<a
-  href=""
-  class="btn warn"
-  >Edit</a
->
-<a
-  href=""
-  class="btn danger"
-  >Delete</a
->
+
+<h3>Associated Tasks</h3>
+
+<div>
+  {% if list.task_set.all %}
+  <section class="card-container">
+    {% for task in list.task_set.all %}
+    <div class="card">
+      <a href="{% url 'task-detail' task.id %}">
+        <div class="card-content">
+          <div class="card-img-priority">
+            <div id="priority">
+              <p>{{task.priority}}</p>
+            </div>
+          </div>
+          <div class="card-info">
+            <ul>
+              <li class="card-title">{{ task.task_name }}</li>
+              <li>Due: {{task.due_date}}</li>
+              <li><small>{{ task.note }}</small></li>
+            </ul>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </section>
+  {% else %}
+  <p>This list currently has no associated tasks.</p>
+  {% endif %}
+</div>
 
 {% endblock %}

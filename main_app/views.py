@@ -17,8 +17,16 @@ def task_index(request):
 
 def task_detail(request, task_id):
     task = Task.objects.get(id=task_id)
+    lists = List.objects.all()
+    selected_list_id = lists[0].id
     subtask_form = SubtaskForm()
-    return render(request, 'tasks/detail.html', {'task': task, 'subtask_form': subtask_form})
+    context = {
+        'task': task, 
+        'subtask_form': subtask_form, 
+        'lists': lists, 
+        'selected_list_id': selected_list_id
+    }
+    return render(request, 'tasks/detail.html', context)
 
 def add_subtask(request, task_id):
     form = SubtaskForm(request.POST)
@@ -55,10 +63,73 @@ class TaskDelete(DeleteView):
 
 class ListCreate(CreateView):
     model = List
-    fields = '__all__'
+    fields = ['list_name', 'description']
 
 class ListIndex(ListView):
     model = List
 
 class ListDetail(DetailView):
     model = List
+
+class ListUpdate(UpdateView):
+    model = List
+    fields = '__all__'
+    success_url='/lists/'
+
+class ListDelete(DeleteView):
+    model = List
+    success_url = '/lists/'
+
+def associate_list(request, task_id):
+    if request.method == 'POST':
+        selected_list_id = request.POST.get('selected_list_id')
+        if selected_list_id:
+            try:
+                list_to_associate = List.objects.get(pk=selected_list_id)
+                task = Task.objects.get(pk=task_id)
+                task.list_key = list_to_associate
+                task.save()
+                return redirect('task-detail', task_id=task_id)
+            except List.DoesNotExist:
+                pass
+    return redirect('task-detail', task_id=task_id)
+
+def change_list(request, task_id):
+    if request.method == 'POST':
+        new_list_id = request.POST.get('new_list')
+        if new_list_id:
+            try:
+                task = Task.objects.get(pk=task_id)
+                new_list = List.objects.get(pk=new_list_id)
+                task.list_key = new_list
+                task.save()
+                return redirect('task-detail', task_id=task_id)
+            except (List.DoesNotExist, Task.DoesNotExist):
+                pass
+    return redirect('task-detail', task_id=task_id)
+
+def disassociate_list(request, task_id):
+    if request.method == 'POST':
+        selected_list_id = request.POST.get('selected_list_id')
+        if selected_list_id:
+            try:
+                task = Task.objects.get(pk=task_id)
+                task.list_key = None
+                task.save()
+                return redirect('task-detail', task_id=task_id)
+            except List.DoesNotExist:
+                pass
+    return redirect('task-detail', task_id=task_id)
+
+def change_completed(request, task_id):
+    if request.method == 'POST':
+        selected_completed_value = request.POST.get('completed')
+        if selected_completed_value:
+            try:
+                task = Task.objects.get(pk=task_id)
+                task.completed = selected_completed_value
+                task.save()
+                return redirect('task-detail', task_id=task_id)
+            except Task.DoesNotExist:
+                pass
+    return redirect('task-detail', task_id=task_id)

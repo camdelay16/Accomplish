@@ -5,6 +5,7 @@ from django.urls import reverse
 class Task(models.Model):
     task_name = models.CharField(max_length=100)
     due_date = models.DateField('Due Date')
+    list_key = models.ForeignKey('List', on_delete=models.SET_NULL, null=True, blank=True)
 
     class PriorityChoices(models.TextChoices):
         LOW = 'Low', 'Low'
