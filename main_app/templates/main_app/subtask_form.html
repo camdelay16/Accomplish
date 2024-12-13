@@ -7,21 +7,26 @@
 
 <div class="page-header">
   {% if subtask %}
-  <h1>Edit {{ subtask.subtask_name }}</h1>
+  <h1>Edit {{ subtask.subtask_name }} in Task: {{ task.task_name }}</h1>
   {% else %}
-  <h1>Add a Subtask</h1>
+  <h1>Add a Subtask to Task: {{ task.task_name }}</h1>
   {% endif %}
 </div>
 
 <div>
-  <h4>Add Subtask</h4>
   <form
-    action="{% url 'add-subtask' task.id %}"
+    action=""
     method="post"
     class="subsection-content"
     autocomplete="off"
   >
-    {% csrf_token %} {{ subtask_form.as_table }}
+    {% csrf_token %}
+    <input
+      type="hidden"
+      name="task_id"
+      value="{{ task.id }}"
+    />
+    {{ form.as_table }}
     <button
       type="submit"
       class="btn submit"

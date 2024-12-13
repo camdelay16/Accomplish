@@ -21,30 +21,6 @@
         <div id="completed">
           <p>{{task.completed}}</p>
         </div>
-        <div>
-          <form
-            id="update-completed-form"
-            action="{% url 'change-completed' task.id %}"
-            method="post"
-          >
-            {% csrf_token %}
-            <input
-              type="hidden"
-              name="selected_completed_value"
-              id="selected-completed-value"
-            />
-            <select
-              name="completed"
-              id="is-complete-dropdown"
-            >
-              <option value="">Completed?</option>
-              {% for choice in task.CompletedChoices.choices %}
-              <option value="{{ choice.0 }}">{{ choice.1 }}</option>
-              {% endfor %}
-            </select>
-            <button type="submit">Update Status</button>
-          </form>
-        </div>
       </div>
       <div class="card-info">
         <ul>
@@ -72,12 +48,12 @@
   <section class="lists">
     <div class="subsection-title">
       {% if task.list_key %}
-      <h2>
+      <h6>
         List:
         <a href="{% url 'list-detail' task.list_key.id %}"
-          ><h6>{{ task.list_key }}</h6></a
+          >{{ task.list_key }}</a
         >
-      </h2>
+      </h6>
       <form
         action="{% url 'disassociate-list' task.id %}"
         method="post"
@@ -88,60 +64,42 @@
           name="selected_list_id"
           value="{{ task.list_key.id }}"
         />
-        <button
-          type="submit"
-          class="btn btn-danger"
-        >
-          Remove List
-        </button>
+        <button type="submit">Remove List</button>
       </form>
+      {% else %}
       <form
-        action="{% url 'change-list' task.id %}"
+        action="{% url 'associate-list' task.id %}"
         method="post"
       >
         {% csrf_token %}
-        <select name="new_list">
-          <option value="">Choose List</option>
+        <select
+          id="available-lists"
+          name="selected_list_id"
+        >
+          <option value="">Add to list? (optional)</option>
           {% for list in lists %}
           <option value="{{ list.id }}">{{ list.list_name }}</option>
           {% endfor %}
         </select>
-        <button type="submit">Change</button>
+        <button
+          type="submit"
+          class="btn submit"
+        >
+          Add
+        </button>
       </form>
-      {% else %}
-      <h2>
-        List:
-        <h6>Add to list?</h6>
-      </h2>
+      {% endif %}
     </div>
-    <h3>Available lists</h3>
-    <form
-      action="{% url 'associate-list' task.id %}"
-      method="post"
-    >
-      {% csrf_token %}
-      <select
-        id="available-lists"
-        name="selected_list_id"
-      >
-        <option value="">Choose List</option>
-        {% for list in lists %}
-        <option value="{{ list.id }}">{{ list.list_name }}</option>
-        {% endfor %}
-      </select>
-      <button
-        type="submit"
-        class="btn submit"
-      >
-        Add
-      </button>
-    </form>
-    {% endif %}
   </section>
 
   <section class="subtask">
     <div class="subsection-title">
       <h2>Subtasks</h2>
+      <div>
+        <button>
+          <a href="{% url 'subtask-create' task.id %}">+</a>
+        </button>
+      </div>
     </div>
     <div class="subtask-card">
       <table>
@@ -160,28 +118,19 @@
             <td>{{subtask.priority}}</td>
             <td>{{subtask.due_date}}</td>
             <td>{{ subtask.completed }}</td>
+            <td>
+              <button>
+                <a href="{% url 'subtask-update' task.id subtask.id %}"
+                  >E</a
+                ></button
+              ><button>
+                <a href="{% url 'subtask-delete' task.id subtask.id %}">D</a>
+              </button>
+            </td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
-
-      <div>
-        <h6>Add Subtask</h6>
-        <form
-          action="{% url 'add-subtask' task.id %}"
-          method="post"
-          class="subsection-content"
-          autocomplete="off"
-        >
-          {% csrf_token %} {{ subtask_form.as_p }}
-          <button
-            type="submit"
-            class="btn submit"
-          >
-            Submit
-          </button>
-        </form>
-      </div>
     </div>
   </section>
 </div>

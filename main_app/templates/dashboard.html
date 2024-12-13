@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{% static 'css/home.css' %}"
+/>
+{% endblock %} {% block content %}
+
+<section class="logo-container">
+  <div class="tasks-container">
+    <img
+      src="{% static 'images/Accomplish_logo.svg' %}"
+      alt="Accomplish"
+      id="home-logo"
+    />
+  </div>
+</section>
+
+{% endblock %}
