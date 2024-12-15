@@ -10,3 +10,19 @@ main {
   margin: 10px;
   padding: 10px;
 }
+
+.navbar {
+  background-color: #617453 !important;
+}
+
+button {
+  border-radius: 15px;
+  background-color: #617453;
+  color: #f3f2e6;
+  border: none;
+  box-shadow: 10px, 5px, 5px, #394331;
+  padding: 10px;
+  a {
+    color: #f3f2e6;
+  }
+}

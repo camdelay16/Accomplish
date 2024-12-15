@@ -1,11 +1,12 @@
 from django.db import models
+import datetime
 from django.urls import reverse
 from django.contrib.auth.models import User
-
 # Create your models here.
+
 class Task(models.Model):
     task_name = models.CharField(max_length=100)
-    due_date = models.DateField('Due Date')
+    due_date = models.DateField(default=datetime.datetime.today, verbose_name='Due Date')
     list_key = models.ForeignKey('List', on_delete=models.SET_NULL, null=True, blank=True, verbose_name="List (optional)")
 
     class PriorityChoices(models.TextChoices):
@@ -31,7 +32,7 @@ class Task(models.Model):
 
 class Subtask(models.Model):
     subtask_name = models.CharField('Name', max_length=100)
-    due_date = models.DateField('Due Date')
+    due_date = models.DateField(default=datetime.datetime.today, verbose_name='Due Date')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     class PriorityChoices(models.TextChoices):

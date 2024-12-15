@@ -1,14 +1,17 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.contrib import messages
 from django.contrib.auth.views import LoginView
-from django.contrib.auth import login
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
+from django import forms
 from .models import Task, Subtask, List
-from .forms import SubtaskForm
+from .forms import SubtaskForm, TaskForm, SignUpForm, UpdateUserForm, ChangePasswordForm
 
 
 # Create your views here.
@@ -17,7 +20,9 @@ class Home(LoginView):
 
 @login_required
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    tasks = Task.objects.filter(user=request.user)
+    lists = List.objects.filter(user=request.user)
+    return render(request, 'dashboard.html', {'tasks': tasks, 'lists': lists})
 
 def about(request):
     return render(request, 'about.html')
@@ -197,15 +202,58 @@ def disassociate_list(request, task_id):
     return redirect('task-detail', task_id=task_id)
 
 def signup(request):
-    error_message = ''
+    form = SignUpForm()
+    
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
-            user = form.save()
+            form.save()
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+
+            user = authenticate(username=username, password=password)
             login(request, user)
             return redirect('dashboard')
         else:
             error_message = 'Invalid sign up - try again'
-    form = UserCreationForm()
-    context = {'form': form, 'error_message': error_message}
-    return render(request, 'signup.html', context)
+    else:
+        return render(request, 'signup.html', {'form':form})
+
+@login_required
+def update_user(request):
+    if request.user.is_authenticated:
+        current_user = User.objects.get(id=request.user.id)
+        user_form = UpdateUserForm(request.POST or None, instance=current_user)
+
+        if user_form.is_valid():
+            user_form.save()
+
+            login(request, current_user)
+            messages.success(request, "User has been updated!")
+            return redirect('dashboard')
+        return render(request, 'update_user.html', {"user_form": user_form})
+    else:
+        messages.success(request, "You must be logged in to access page.")
+        return redirect('home')
+
+@login_required
+def update_password(request):
+    if request.user.is_authenticated:
+        current_user = request.user
+        if request.method == 'POST':
+            form = ChangePasswordForm(current_user, request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, "Your password has been updated.")
+                login(request, current_user)
+                return redirect('update-user')
+            else:
+                for error in list(form.errors.values()):
+                    messages.error(request, error)
+                    return render(request, 'update_password.html', {'form': form})
+        else:
+            form = ChangePasswordForm(current_user)
+            return render(request, 'update_password.html', {'form': form})
+    else:
+        messages.success(request, "You must be logged in to see this page.")
+        return redirect('home')

@@ -31,22 +31,19 @@
   <section class="card-container">
     {% for task in list.task_set.all %}
     <div class="card">
-      <a href="{% url 'task-detail' task.id %}">
-        <div class="card-content">
-          <div class="card-img-priority">
-            <div id="priority">
-              <p>{{task.priority}}</p>
-            </div>
-          </div>
-          <div class="card-info">
-            <ul>
-              <li class="card-title">{{ task.task_name }}</li>
-              <li>Due: {{task.due_date}}</li>
-              <li><small>{{ task.note }}</small></li>
-            </ul>
-          </div>
+      <h5 class="card-header">
+        <div>{{ task.task_name }}</div>
+        <div id="priority">
+          <p>{{task.priority}}</p>
         </div>
-      </a>
+      </h5>
+      <div class="card-body">
+        <h6 class="card-text">Due: {{task.due_date}}</h6>
+        <p class="card-text">{{ task.note }}</p>
+        <button class="card-btn">
+          <a href="{% url 'task-detail' task.id %}">View</a>
+        </button>
+      </div>
     </div>
     {% endfor %}
   </section>

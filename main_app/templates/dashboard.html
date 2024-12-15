@@ -1,17 +1,77 @@
 {% extends 'base.html' %} {% load static %} {% block head %}
 <link
   rel="stylesheet"
-  href="{% static 'css/home.css' %}"
+  href="{% static 'css/dashboard.css' %}"
 />
 {% endblock %} {% block content %}
 
-<section class="logo-container">
-  <div class="tasks-container">
-    <img
-      src="{% static 'images/Accomplish_logo.svg' %}"
-      alt="Accomplish"
-      id="home-logo"
-    />
+<section class="dashboard-tasks">
+  <div class="header">
+    <h2>Welcome, {{user.username}}</h2>
+  </div>
+</section>
+
+<section class="dashboard-tasks">
+  <div class="header">
+    <div class="title-btn-container">
+      <h3>All Tasks</h3>
+      <button class="dashboard-btn">
+        <a href="{% url 'task-create' %}">New Task</a>
+      </button>
+    </div>
+  </div>
+  <div class="dashboardtable">
+    <table class="table table-striped">
+      <thead class="table-header">
+        <tr>
+          <th>Name</th>
+          <th>Priority</th>
+          <th>Due Date</th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        {% for task in tasks %}
+        <tr>
+          <td>
+            <a href="{% url 'task-detail' task.id %}">{{task.task_name}}</a>
+          </td>
+          <td>{{task.priority}}</td>
+          <td>{{task.due_date}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="dashboard-lists">
+  <div class="header">
+    <div class="title-btn-container">
+      <h3>All Lists</h3>
+      <button class="dashboard-btn">
+        <a href="{% url 'list-create' %}">New List</a>
+      </button>
+    </div>
+  </div>
+  <div class="dashboardtable">
+    <table class="table table-striped">
+      <thead class="table-header">
+        <tr>
+          <th>List</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        {% for list in lists %}
+        <tr>
+          <td>
+            <a href="{% url 'list-detail' list.id %}">{{list.list_name}}</a>
+          </td>
+          <td>{{list.description}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 </section>
 

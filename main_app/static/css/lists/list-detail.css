@@ -1,23 +1,70 @@
+:root {
+  --primary-color: #396c91;
+  --secondary-color: #f3f2e6;
+  --accent-color: #81568a;
+  --accent-color2: #617453;
+  --border-radius: 20px;
+  --gap: 20px;
+  --padding: 10px;
+  --margin: 20px;
+}
+
 .card {
-  background-color: #396c91;
-  border-radius: 20px;
+  background-color: var(--primary-color);
+  border-radius: var(--border-radius);
   width: 300px;
+  gap: var(--gap);
+  display: flex;
+  flex-direction: column;
+  border: none;
 }
 
 .card-content {
-  color: #f3f2e6;
-  padding: 10px;
-  margin: 20px;
+  color: var(--secondary-color);
+  padding: var(--padding);
+  margin: var(--margin);
+}
+
+.card-img-container {
+  width: 100px;
+}
+
+.task-image {
+  width: 100px;
+}
+
+#priority {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--secondary-color);
+  border-radius: 10px;
+  background-color: var(--accent-color);
+  width: 60px;
+  height: 25px;
+  color: var(--secondary-color);
+  font-size: 12px;
+}
+
+#priority p {
+  margin: 5px;
+}
+
+.card-img-priority {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
 }
 
 .card-info {
   display: grid;
   grid-template-columns: 1fr;
-  margin: 0px;
-  li {
-    list-style-type: none;
-    margin: 5px;
-  }
+  margin: 0;
+}
+
+.card-info li {
+  list-style-type: none;
+  margin: 5px;
 }
 
 .card-title {
@@ -27,7 +74,80 @@
 }
 
 .card-container {
-  margin: 20px;
+  margin: var(--margin);
   display: grid;
+  gap: var(--gap);
+}
+
+.card-text,
+.card-content,
+.card-title,
+.card-info li,
+.card-content p,
+.card-text p,
+.card-header {
+  color: var(--secondary-color);
+}
+.card-btn {
+  background-color: #617453;
+  color: var(--secondary-color);
+  border: none;
+  border-radius: 5px;
+  padding: var(--padding);
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.card-btn:hover {
+  background-color: var(--primary-color);
+}
+.card {
+  width: 250px;
+  gap: 15px;
+}
+
+.card-content {
+  padding: 8px;
+  margin: 15px;
+}
+
+.card-img-container,
+.task-image {
+  width: 80px;
+}
+
+#priority {
+  width: 50px;
+  height: 20px;
+  font-size: 10px;
+}
+
+.card-img-priority {
   gap: 20px;
+}
+
+.card-title {
+  font-size: 18px;
+}
+
+.card-btn {
+  padding: 8px;
+  font-size: 14px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #617453;
+  width: 100%;
+}
+
+.card-header #priority {
+  margin-left: auto;
+}
+
+.card-header {
+  font-weight: bold;
 }

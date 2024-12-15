@@ -8,13 +8,6 @@
   <div class="card">
     <div class="card-content">
       <div class="card-img-priority">
-        <div class="card-img-container">
-          <img
-            src="{% static 'images/TaskImg.svg' %}"
-            alt=""
-            class="task-image"
-          />
-        </div>
         <div id="priority">
           <p>{{task.priority}}</p>
         </div>
@@ -107,8 +100,8 @@
           <tr>
             <th>Name</th>
             <th>Priority</th>
-            <th>Due Date</th>
-            <th>Status</th>
+            <th>Due</th>
+            <th>Edit/Del.</th>
           </tr>
         </thead>
         <tbody class="table-body">
@@ -117,14 +110,15 @@
             <td>{{subtask.subtask_name}}</td>
             <td>{{subtask.priority}}</td>
             <td>{{subtask.due_date}}</td>
-            <td>{{ subtask.completed }}</td>
             <td>
-              <button>
+              <button class="table-btn">
                 <a href="{% url 'subtask-update' task.id subtask.id %}"
-                  >E</a
+                  >Edit</a
                 ></button
-              ><button>
-                <a href="{% url 'subtask-delete' task.id subtask.id %}">D</a>
+              ><button class="table-btn">
+                <a href="{% url 'subtask-delete' task.id subtask.id %}"
+                  >Delete</a
+                >
               </button>
             </td>
           </tr>

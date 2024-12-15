@@ -23,4 +23,6 @@ urlpatterns = [
     path('tasks/<int:task_id>/subtask/create/', views.SubtaskCreate.as_view(), name='subtask-create'),
     path('tasks/<int:task_id>/subtask/<int:pk>/update/', views.SubtaskUpdate.as_view(), name='subtask-update'),
     path('tasks/<int:task_id>/subtask/<int:pk>/delete/', views.SubtaskDelete.as_view(), name='subtask-delete'),
+    path('update_user/', views.update_user, name='update-user'),
+    path('update_password/', views.update_password, name='update-password'),
 ]

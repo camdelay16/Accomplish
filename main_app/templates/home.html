@@ -7,20 +7,23 @@
 
 <section>
   <form
-    action="{% url 'dashboard' %}"
+    action="{% url 'home' %}"
     method="post"
     class="login"
   >
+    <br />
     <h1>Login</h1>
+    <br />
     {% csrf_token %} {{ form.as_p }}
     <input
       type="hidden"
       name="next"
       value="{{ next }}"
     />
+    <br />
     <button
       type="submit"
-      class="btn submit"
+      class="btn btn-success"
     >
       Login
     </button>

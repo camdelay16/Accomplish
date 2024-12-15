@@ -72,3 +72,37 @@
   width: 275px;
   padding: 5px;
 }
+
+button {
+  border-radius: 12px;
+  padding: 7px;
+  margin: 5px;
+  background-color: #617453;
+}
+
+.table-btn {
+  border-radius: 12px;
+  padding: 7px;
+  margin: 5px;
+  background-color: #81568a;
+}
+table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  text-align: left;
+  font-size: 11px;
+  color: #f3f2e6;
+}
+
+table th {
+  background-color: #4e5e3a;
+}
+
+table tr:nth-child(odd) {
+  background-color: #617453;
+}
+
+table tr:nth-child(even) {
+  background-color: #7a8b6f;
+}

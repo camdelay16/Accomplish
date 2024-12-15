@@ -12,7 +12,7 @@
   <h1>Add a Subtask to Task: {{ task.task_name }}</h1>
   {% endif %}
 </div>
-
+<br />
 <div>
   <form
     action=""
@@ -26,10 +26,10 @@
       name="task_id"
       value="{{ task.id }}"
     />
-    {{ form.as_table }}
+    {{ form.as_p }}
     <button
       type="submit"
-      class="btn submit"
+      class="btn btn-success"
     >
       Submit
     </button>
