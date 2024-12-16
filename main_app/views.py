@@ -33,6 +33,44 @@ def task_index(request):
     return render(request, 'tasks/index.html', {'tasks': tasks})
 
 @login_required
+def task_priority(request):
+    tasks = Task.objects.filter(user=request.user)
+    high_priority_tasks = tasks.filter(priority='High')
+    medium_priority_tasks = tasks.filter(priority='Medium')
+    low_priority_tasks = tasks.filter(priority='Low')
+
+    user_agent = request.META['HTTP_USER_AGENT']
+    if 'Mobile' in user_agent:
+        slice_size = 1
+    else:
+        slice_size = 3
+
+    sliced_tasks = []
+    for i in range(0, len(tasks), slice_size):
+        sliced_tasks.append(tasks[i:i+slice_size])
+
+    sliced_high_priority_tasks = []
+    for i in range(0, len(high_priority_tasks), slice_size):
+        sliced_high_priority_tasks.append(high_priority_tasks[i:i+slice_size])
+    
+    sliced_medium_priority_tasks = []
+    for i in range(0, len(medium_priority_tasks), slice_size):
+        sliced_medium_priority_tasks.append(medium_priority_tasks[i:i+slice_size])
+
+    sliced_low_priority_tasks = []
+    for i in range(0, len(low_priority_tasks), slice_size):
+        sliced_low_priority_tasks.append(low_priority_tasks[i:i+slice_size])
+
+    context = {
+        'tasks': tasks, 
+        'sliced_tasks': sliced_tasks,
+        'high_priority_tasks': sliced_high_priority_tasks,
+        'medium_priority_tasks': sliced_medium_priority_tasks,
+        'low_priority_tasks': sliced_low_priority_tasks,
+    }
+    return render(request, 'tasks/priority.html', context)
+
+@login_required
 def task_detail(request, task_id):
     task = Task.objects.get(id=task_id)
     lists = List.objects.filter(user=request.user)

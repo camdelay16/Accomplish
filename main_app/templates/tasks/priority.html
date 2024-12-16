@@ -1,0 +1,345 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{% static 'css/tasks/task-priority.css' %}"
+/>
+{% endblock %} {% block content %}
+
+<div
+  class="accordion"
+  id="accordionPriority"
+>
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button
+        class="accordion-button high"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseOne"
+        aria-expanded="true"
+        aria-controls="collapseOne"
+      >
+        High Priority Tasks
+      </button>
+    </h2>
+    <div
+      id="collapseOne"
+      class="accordion-collapse collapse show"
+      data-bs-parent="#accordionPriority"
+    >
+      <div class="accordion-body">
+        <div
+          id="carouselHighPriority"
+          class="carousel slide"
+        >
+          <div class="carousel-inner">
+            {% for task_chunk in high_priority_tasks %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+              <div class="row">
+                {% for task in task_chunk %} {% if task.priority == 'High' %}
+                <div class="col-md-4">
+                  <div class="card">
+                    <h5 class="card-header">
+                      <div>{{ task.task_name }}</div>
+                      <div
+                        id="priority"
+                        style="background-color: var(--danger)"
+                      >
+                        <p>{{task.priority}}</p>
+                      </div>
+                    </h5>
+                    <div class="card-body">
+                      <h6 class="card-text">Due: {{task.due_date}}</h6>
+                      <p class="card-text">{{ task.note }}</p>
+                      <button class="card-btn">
+                        <a href="{% url 'task-detail' task.id %}">View</a>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                {% endif %} {% endfor %}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselHighPriority"
+            data-bs-slide="prev"
+          >
+            <span
+              class="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselHighPriority"
+            data-bs-slide="next"
+          >
+            <span
+              class="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button
+        class="accordion-button medium collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseTwo"
+        aria-expanded="false"
+        aria-controls="collapseTwo"
+      >
+        Medium Priority Tasks
+      </button>
+    </h2>
+    <div
+      id="collapseTwo"
+      class="accordion-collapse collapse"
+      data-bs-parent="#accordionPriority"
+    >
+      <div class="accordion-body">
+        <div
+          id="carouselMediumPriority"
+          class="carousel slide"
+        >
+          <div class="carousel-inner">
+            {% for task_chunk in medium_priority_tasks %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+              <div class="row">
+                {% for task in task_chunk %} {% if task.priority == 'Medium' %}
+                <div class="col-md-4">
+                  <div class="card">
+                    <h5 class="card-header">
+                      <div>{{ task.task_name }}</div>
+                      <div
+                        id="priority"
+                        style="background-color: var(--warning)"
+                      >
+                        <p>{{task.priority}}</p>
+                      </div>
+                    </h5>
+                    <div class="card-body">
+                      <h6 class="card-text">Due: {{task.due_date}}</h6>
+                      <p class="card-text">{{ task.note }}</p>
+                      <button class="card-btn">
+                        <a href="{% url 'task-detail' task.id %}">View</a>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                {% endif %} {% endfor %}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselMediumPriority"
+            data-bs-slide="prev"
+          >
+            <span
+              class="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselMediumPriority"
+            data-bs-slide="next"
+          >
+            <span
+              class="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button
+        class="accordion-button low collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseThree"
+        aria-expanded="false"
+        aria-controls="collapseThree"
+      >
+        Low Priority Tasks
+      </button>
+    </h2>
+    <div
+      id="collapseThree"
+      class="accordion-collapse collapse"
+      data-bs-parent="#accordionPriority"
+    >
+      <div class="accordion-body">
+        <div
+          id="carouselLowPriority"
+          class="carousel slide"
+        >
+          <div class="carousel-inner">
+            {% for task_chunk in low_priority_tasks %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+              <div class="row">
+                {% for task in task_chunk %} {% if task.priority == 'Low' %}
+                <div class="col-md-4">
+                  <div class="card">
+                    <h5 class="card-header">
+                      <div>{{ task.task_name }}</div>
+                      <div
+                        id="priority"
+                        style="background-color: var(--success)"
+                      >
+                        <p>{{task.priority}}</p>
+                      </div>
+                    </h5>
+                    <div class="card-body">
+                      <h6 class="card-text">Due: {{task.due_date}}</h6>
+                      <p class="card-text">{{ task.note }}</p>
+                      <button class="card-btn">
+                        <a href="{% url 'task-detail' task.id %}">View</a>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                {% endif %} {% endfor %}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselLowPriority"
+            data-bs-slide="prev"
+          >
+            <span
+              class="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselLowPriority"
+            data-bs-slide="next"
+          >
+            <span
+              class="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button
+        class="accordion-button all collapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseFour"
+        aria-expanded="false"
+        aria-controls="collapseFour"
+      >
+        All Tasks
+      </button>
+    </h2>
+    <div
+      id="collapseFour"
+      class="accordion-collapse collapse"
+      data-bs-parent="#accordionPriority"
+    >
+      <div class="accordion-body">
+        <div
+          id="carouselAllTasks"
+          class="carousel slide"
+        >
+          <div class="carousel-inner">
+            {% for task_chunk in sliced_tasks %}
+            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+              <div class="row">
+                {% for task in task_chunk %}
+                <div class="col-md-4">
+                  <div class="card">
+                    <h5 class="card-header">
+                      <div>{{ task.task_name }}</div>
+                      <div
+                        id="priority"
+                        style="background-color: 
+                                  {% if task.priority == 'High' %}var(--danger)
+                                  {% elif task.priority == 'Medium' %}var(--warning)
+                                  {% elif task.priority == 'Low' %}var(--success)
+                                  {% else %}white
+                                  {% endif %};"
+                      >
+                        <p>{{task.priority}}</p>
+                      </div>
+                    </h5>
+                    <div class="card-body">
+                      <h6 class="card-text">Due: {{task.due_date}}</h6>
+                      <p class="card-text">{{ task.note }}</p>
+                      <button class="card-btn">
+                        <a href="{% url 'task-detail' task.id %}">View</a>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselAllTasks"
+            data-bs-slide="prev"
+          >
+            <span
+              class="carousel-control-prev-icon"
+              aria-hidden="true"
+            ></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselAllTasks"
+            data-bs-slide="next"
+          >
+            <span
+              class="carousel-control-next-icon"
+              aria-hidden="true"
+            ></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
