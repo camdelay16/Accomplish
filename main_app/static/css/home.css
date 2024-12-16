@@ -107,3 +107,43 @@ td > textarea {
 .danger:hover {
   background-color: rgba(168, 53, 45, 0.9);
 }
+
+@media (max-width: 768px) {
+  .logo-container,
+  #home-logo {
+    width: 200px;
+  }
+
+  .form-container {
+    padding: 0 10px;
+  }
+
+  table {
+    padding: 0 20px;
+  }
+
+  th,
+  td {
+    font-size: var(--font-s);
+  }
+
+  td > * {
+    font-size: var(--font-s);
+  }
+
+  td > textarea {
+    height: calc(4 * var(--font-s) + 8px);
+  }
+
+  .card-btn,
+  .warn,
+  .danger {
+    font-size: 12px;
+    padding: 6px;
+  }
+
+  .card-btn {
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+}

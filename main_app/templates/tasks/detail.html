@@ -4,137 +4,144 @@
   href="{% static 'css/tasks/task-detail.css' %}"
 />
 {% endblock %} {% block content %}
-<section class="lists">
-  <div class="subsection-title">
-    {% if task.list_key %}
-    <h6>
-      List:
-      <a href="{% url 'list-detail' task.list_key.id %}">{{ task.list_key }}</a>
-    </h6>
-    <form
-      action="{% url 'disassociate-list' task.id %}"
-      method="post"
-    >
-      {% csrf_token %}
-      <input
-        type="hidden"
-        name="selected_list_id"
-        value="{{ task.list_key.id }}"
-      />
-      <button
-        type="submit"
-        class="detail-page-btn"
+<div class="page-content">
+  <section class="lists">
+    <div class="subsection-title">
+      {% if task.list_key %}
+      <h6>
+        List:
+        <a href="{% url 'list-detail' task.list_key.id %}"
+          >{{ task.list_key }}</a
+        >
+      </h6>
+      <form
+        action="{% url 'disassociate-list' task.id %}"
+        method="post"
       >
-        Remove List
-      </button>
-    </form>
-    {% else %}
-    <form
-      action="{% url 'associate-list' task.id %}"
-      method="post"
-    >
-      {% csrf_token %}
-      <select
-        id="available-lists"
-        name="selected_list_id"
+        {% csrf_token %}
+        <input
+          type="hidden"
+          name="selected_list_id"
+          value="{{ task.list_key.id }}"
+        />
+        <button
+          type="submit"
+          class="detail-page-btn"
+        >
+          Remove List
+        </button>
+      </form>
+      {% else %}
+      <form
+        action="{% url 'associate-list' task.id %}"
+        method="post"
       >
-        <option value="">Add to list? (optional)</option>
-        {% for list in lists %}
-        <option value="{{ list.id }}">{{ list.list_name }}</option>
-        {% endfor %}
-      </select>
-      <button
-        type="submit"
-        class="detail-page-btn"
-      >
-        Add
-      </button>
-    </form>
-    {% endif %}
-  </div>
-</section>
+        {% csrf_token %}
+        <select
+          id="available-lists"
+          name="selected_list_id"
+        >
+          <option value="">Add to list? (optional)</option>
+          {% for list in lists %}
+          <option value="{{ list.id }}">{{ list.list_name }}</option>
+          {% endfor %}
+        </select>
+        <button
+          type="submit"
+          class="detail-page-btn"
+        >
+          Add
+        </button>
+      </form>
+      {% endif %}
+    </div>
+  </section>
 
-<section class="card-container">
-  <div class="card">
-    <h5 class="card-header">
-      <div>{{ task.task_name }}</div>
-      <div
-        id="priority"
-        style="background-color: 
+  <section class="card-container">
+    <div class="card">
+      <h5 class="card-header">
+        <div>{{ task.task_name }}</div>
+        <div
+          id="priority"
+          style="background-color: 
           {% if task.priority == 'High' %}var(--danger)
           {% elif task.priority == 'Medium' %}var(--warning)
           {% elif task.priority == 'Low' %}var(--success)
           {% else %}white
           {% endif %};"
-      >
-        <p>{{ task.priority }}</p>
+        >
+          <p>{{ task.priority }}</p>
+        </div>
+      </h5>
+      <div class="card-body">
+        <h6 class="card-text">Due: {{task.due_date}}</h6>
+        <p class="card-text">Note: {{ task.note }}</p>
+        <div id="completed">
+          <h6 class="card-text">{{task.completed}}</h6>
+        </div>
+        <div class="task-actions">
+          <button class="warn">
+            <a href="{% url 'task-update' task.id %}">Edit</a>
+          </button>
+          <button class="danger">
+            <a href="{% url 'task-delete' task.id %}">Delete</a>
+          </button>
+        </div>
       </div>
-    </h5>
-    <div class="card-body">
-      <h6 class="card-text">Due: {{task.due_date}}</h6>
-      <p class="card-text">Note: {{ task.note }}</p>
-      <div id="completed">
-        <h6 class="card-text">{{task.completed}}</h6>
-      </div>
-      <div class="task-actions">
-        <button class="warn">
-          <a href="{% url 'task-update' task.id %}">Edit</a>
-        </button>
-        <button class="danger">
-          <a href="{% url 'task-delete' task.id %}">Delete</a>
-        </button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<br />
-<div class="subtask-list-container">
-  <section class="subtask">
-    <div class="subsection-title">
-      <h2>Subtasks</h2>
-      <div>
-        <button class="detail-page-btn">
-          <a href="{% url 'subtask-create' task.id %}">Add</a>
-        </button>
-      </div>
-    </div>
-    <div class="subtask-card">
-      {% if task.subtask_set.all %}
-      <div class="table-card-head"></div>
-      <table>
-        <thead class="table-header">
-          <tr>
-            <th>Name</th>
-            <th>Priority</th>
-            <th>Due</th>
-            <th>Edit/Del.</th>
-          </tr>
-        </thead>
-        <tbody class="table-body">
-          {% for subtask in task.subtask_set.all %}
-          <tr>
-            <td>{{subtask.subtask_name}}</td>
-            <td>{{subtask.priority}}</td>
-            <td>{{subtask.due_date}}</td>
-            <td>
-              <button class="table-btn">
-                <a href="{% url 'subtask-update' task.id subtask.id %}">Edit</a>
-              </button>
-              <button class="table-btn">
-                <a href="{% url 'subtask-delete' task.id subtask.id %}"
-                  >Delete</a
-                >
-              </button>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      {% else %}
-      <p class="no-subtasks">No Subtasks</p>
-      {% endif %}
     </div>
   </section>
+
+  <br />
+  <div class="subtask-list-container">
+    <section class="subtask">
+      <div class="subsection-title">
+        <h2>Subtasks</h2>
+        <div>
+          <button class="detail-page-btn">
+            <a href="{% url 'subtask-create' task.id %}">Add</a>
+          </button>
+        </div>
+      </div>
+      <div class="subtask-card">
+        {% if task.subtask_set.all %}
+        <div class="table-card-head"></div>
+        <table>
+          <thead class="table-header">
+            <tr>
+              <th>Name</th>
+              <th>Priority</th>
+              <th>Due</th>
+              <th>Edit/Del.</th>
+            </tr>
+          </thead>
+          <tbody class="table-body">
+            {% for subtask in task.subtask_set.all %}
+            <tr>
+              <td>{{subtask.subtask_name}}</td>
+              <td>{{subtask.priority}}</td>
+              <td>{{subtask.due_date}}</td>
+              <td>
+                <button class="table-btn">
+                  <a href="{% url 'subtask-update' task.id subtask.id %}"
+                    >Edit</a
+                  >
+                </button>
+                <button class="table-btn">
+                  <a href="{% url 'subtask-delete' task.id subtask.id %}"
+                    >Delete</a
+                  >
+                </button>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <p class="no-subtasks">No Subtasks</p>
+        {% endif %}
+      </div>
+    </section>
+  </div>
 </div>
+
 {% endblock %}

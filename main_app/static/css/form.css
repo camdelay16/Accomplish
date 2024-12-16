@@ -13,7 +13,7 @@
   --margin: 20px;
   --shadow-color: #394331;
   --table-odd-bg: #728961;
-  --table-even-bg: #606e57;
+  --table-even-bg: #4a5643;
   --table-header-bg: #4e5e3a;
 }
 
@@ -98,4 +98,40 @@ td > textarea {
 
 .danger:hover {
   background-color: rgba(168, 53, 45, 0.9);
+}
+
+.password-change-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .form-container {
+    padding: 10px;
+  }
+
+  table {
+    padding: 0 20px;
+    border-spacing: 0 10px;
+  }
+
+  th,
+  td {
+    font-size: var(--font-s);
+    padding: 4px 10px;
+  }
+
+  td > * {
+    font-size: var(--font-s);
+  }
+
+  .card-btn,
+  .warn,
+  .danger {
+    font-size: 12px;
+    padding: 6px;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
 }

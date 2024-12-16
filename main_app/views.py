@@ -79,7 +79,7 @@ class TaskCreate(LoginRequiredMixin, CreateView):
 
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
-    fields = ['task_name', 'due_date', 'priority', 'note', 'list_key']
+    fields = ['task_name', 'due_date', 'priority', 'note', 'list_key', 'completed']
 
 class TaskDelete(LoginRequiredMixin, DeleteView):
     model = Task
@@ -106,7 +106,7 @@ class ListDetail(LoginRequiredMixin, DetailView):
 
 class ListUpdate(LoginRequiredMixin, UpdateView):
     model = List
-    fields = '__all__'
+    fields = ['list_name', 'description']
     success_url='/lists/'
 
 class ListDelete(LoginRequiredMixin, DeleteView):

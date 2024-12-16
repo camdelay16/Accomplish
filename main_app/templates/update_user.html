@@ -29,12 +29,13 @@
     Update Profile
   </button>
 </form>
-
-<button
-  type="submit"
-  class="card-btn"
->
-  <a href="{% url 'update-password' %}"> Update Password</a>
-</button>
+<div class="password-change-btn">
+  <button
+    type="submit"
+    class="card-btn"
+  >
+    <a href="{% url 'update-password' %}"> Update Password</a>
+  </button>
+</div>
 
 {% endblock %}

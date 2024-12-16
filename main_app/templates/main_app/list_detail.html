@@ -5,7 +5,11 @@
 />
 {% endblock %} {% block content %}
 
-<section class="card-container">
+<section class="page-header">
+  <h3>List:</h3>
+</section>
+
+<section class="card-container-center">
   <div class="card">
     <h5 class="card-header">
       <div>{{ list.list_name }}</div>
@@ -23,9 +27,11 @@
 </section>
 <br />
 
-<h3>Associated Tasks</h3>
+<section class="page-header">
+  <h3>Associated Tasks:</h3>
+</section>
 
-<div>
+<div class="card-container-center">
   {% if list.task_set.all %}
   <section class="card-container">
     {% for task in list.task_set.all %}

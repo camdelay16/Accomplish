@@ -126,3 +126,57 @@ td {
 td:first-child {
   font-weight: bold;
 }
+
+@media (max-width: 768px) {
+  .title-btn-container {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .dashboard-btn {
+    font-size: 10px;
+    padding: 8px;
+  }
+
+  .dashboardtable {
+    height: auto;
+    overflow-y: auto;
+  }
+
+  .table-card {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  th,
+  td {
+    padding: 5px;
+  }
+}
+
+@media (min-width: 769px) {
+  .dashboard-tasks,
+  .dashboard-lists {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
+  }
+
+  .table-card {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  table {
+    font-size: 16px; /* Increased font size */
+  }
+
+  th,
+  td {
+    padding: 5px;
+  }
+}

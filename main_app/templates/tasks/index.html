@@ -7,34 +7,39 @@
 
 <section class="page-header">
   <h1>All Tasks</h1>
+  <button class="card-btn">
+    <a href="{% url 'task-create' %}">New Task</a>
+  </button>
 </section>
 
-<section class="card-container">
-  {% for task in tasks %}
-  <div class="card">
-    <h5 class="card-header">
-      <div>{{ task.task_name }}</div>
-      <div
-        id="priority"
-        style="background-color: 
+<section class="tasks">
+  <div class="card-container">
+    {% for task in tasks %}
+    <div class="card">
+      <h5 class="card-header">
+        <div>{{ task.task_name }}</div>
+        <div
+          id="priority"
+          style="background-color: 
       {% if task.priority == 'High' %}var(--danger)
       {% elif task.priority == 'Medium' %}var(--warning)
       {% elif task.priority == 'Low' %}var(--success)
       {% else %}white
       {% endif %};"
-      >
-        <p>{{task.priority}}</p>
+        >
+          <p>{{task.priority}}</p>
+        </div>
+      </h5>
+      <div class="card-body">
+        <h6 class="card-text">Due: {{task.due_date}}</h6>
+        <p class="card-text">{{ task.note }}</p>
+        <button class="card-btn">
+          <a href="{% url 'task-detail' task.id %}">View</a>
+        </button>
       </div>
-    </h5>
-    <div class="card-body">
-      <h6 class="card-text">Due: {{task.due_date}}</h6>
-      <p class="card-text">{{ task.note }}</p>
-      <button class="card-btn">
-        <a href="{% url 'task-detail' task.id %}">View</a>
-      </button>
     </div>
+    {% endfor %}
   </div>
-  {% endfor %}
 </section>
 
 {% endblock %}

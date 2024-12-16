@@ -5,12 +5,12 @@
 />
 {% endblock %} {% block content %}
 
-<section class="dashboard-tasks">
+<section class="dashboard-header">
   <div class="header">
     <h2>Welcome, {{user.username}}</h2>
   </div>
 </section>
-<br />
+
 <section class="dashboard-tasks">
   <div class="header">
     <div class="title-btn-container">
@@ -37,7 +37,16 @@
             <td>
               <a href="{% url 'task-detail' task.id %}">{{task.task_name}}</a>
             </td>
-            <td>{{task.priority}}</td>
+            <td
+              style="color: 
+            {% if task.priority == 'High' %}var(--danger)
+            {% elif task.priority == 'Medium' %}var(--warning)
+            {% elif task.priority == 'Low' %}green
+            {% else %}white
+            {% endif %}; font-weight: bold;"
+            >
+              {{task.priority}}
+            </td>
             <td>{{task.due_date}}</td>
           </tr>
           {% endfor %}

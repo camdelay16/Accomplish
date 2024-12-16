@@ -7,20 +7,25 @@
 
 <section class="page-header">
   <h1>All Lists</h1>
+  <button class="card-btn">
+    <a href="{% url 'list-create' %}">New List</a>
+  </button>
 </section>
 
-<section class="card-container">
-  {% for list in list_list %}
-  <div class="card">
-    <h5 class="card-header">{{ list.list_name }}</h5>
-    <div class="card-body">
-      <p class="card-text">{{ list.description }}</p>
-      <button class="card-btn">
-        <a href="{% url 'list-detail' list.id %}">View</a>
-      </button>
+<section class="lists">
+  <div class="card-container">
+    {% for list in list_list %}
+    <div class="card">
+      <h5 class="card-header">{{ list.list_name }}</h5>
+      <div class="card-body">
+        <p class="card-text">{{ list.description }}</p>
+        <button class="card-btn">
+          <a href="{% url 'list-detail' list.id %}">View</a>
+        </button>
+      </div>
     </div>
+    {% endfor %}
   </div>
-  {% endfor %}
 </section>
 
 {% endblock %}

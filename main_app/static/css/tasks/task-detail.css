@@ -17,322 +17,665 @@
   --table-header-bg: #4e5e3a;
 }
 
-.card {
-  background-color: var(--primary-color);
-  border-radius: var(--border-radius);
-  width: 300px;
-  gap: 15px;
-  display: flex;
-  flex-direction: column;
-  border: none;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
-}
+@media (max-width: 600px) {
+  .card {
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    width: 300px;
+    gap: 15px;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  .page-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
-.subtask-card {
-  background-color: var(--accent-color2);
-  border-radius: var(--border-radius);
-  width: 300px;
-  padding: 20px;
-  margin: 10px;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
-}
+  .subtask-card {
+    background-color: var(--accent-color2);
+    border-radius: var(--border-radius);
+    width: 300px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+  }
 
-.card-content {
-  color: var(--secondary-color);
-}
+  .card-content {
+    color: var(--secondary-color);
+  }
 
-.card-img-container {
-  width: 100px;
-}
+  .card-img-container {
+    width: 100px;
+  }
 
-.task-image {
-  display: flex;
-  justify-self: flex-start;
-  align-self: flex-start;
-  width: 100px;
-}
+  .task-image {
+    display: flex;
+    justify-self: flex-start;
+    align-self: flex-start;
+    width: 100px;
+  }
 
-#priority {
-  display: flex;
-  justify-self: flex-end;
-  align-self: flex-start;
-  justify-content: center;
-  align-content: center;
-  border: solid;
-  border-radius: var(--border-radius);
-  background-color: var(--accent-color);
-  border-color: var(--secondary-color);
-  width: 75px;
-  border-width: 3px;
-  p {
+  #priority {
+    display: flex;
+    justify-self: flex-end;
+    align-self: flex-start;
+    justify-content: center;
+    align-content: center;
+    border: solid;
+    border-radius: var(--border-radius);
+    background-color: var(--accent-color);
+    border-color: var(--secondary-color);
+    width: 75px;
+    border-width: 3px;
+    p {
+      margin: 5px;
+    }
+  }
+
+  .card-img-priority {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .card-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 0px;
+    li {
+      list-style-type: none;
+      margin: 5px;
+    }
+  }
+
+  .card-title {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 0.07rem;
+  }
+
+  .subsection-content {
+    width: 275px;
+    padding: 5px;
+  }
+
+  .detail-page-btn {
+    justify-self: flex-end;
+    background-color: var(--accent-color2);
+    color: var(--secondary-color);
+    border: none;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+    width: 100px;
+    a {
+      color: var(--secondary-color);
+      align-self: center;
+      justify-self: center;
+    }
+  }
+
+  .detail-page-btn:hover {
+    background-color: #4e5e3a;
+  }
+
+  .table-btn {
+    border-radius: 12px;
+    padding: 7px;
+    margin: 5px;
+    background-color: var(--accent-color);
+    transition: background-color 0.3s ease;
+  }
+
+  .table-btn:hover {
+    background-color: #6b3e6a;
+  }
+
+  table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    text-align: left;
+    font-size: 11px;
+    color: var(--secondary-color);
+  }
+
+  table th {
+    background-color: var(--table-header-bg);
+  }
+
+  table tr:nth-child(odd) {
+    background-color: var(--table-odd-bg);
+  }
+
+  table tr:nth-child(even) {
+    background-color: var(--table-even-bg);
+  }
+
+  .subsection-title {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 30px;
+  }
+  table td:not(:first-child) {
+    text-align: center;
+  }
+
+  table th:not(:first-child) {
+    text-align: center;
+  }
+
+  .card {
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    width: 250px;
+    gap: 15px;
+    display: flex;
+    flex-direction: column;
+    border: none;
+  }
+
+  .card-content {
+    color: var(--secondary-color);
+    padding: 8px;
+    margin: 15px;
+  }
+
+  .card-img-container,
+  .task-image {
+    width: 80px;
+  }
+
+  #priority {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    background-color: var(--accent-color);
+    width: 50px;
+    height: 20px;
+    color: var(--secondary-color);
+    font-size: 10px;
+  }
+
+  #priority p {
     margin: 5px;
   }
-}
 
-.card-img-priority {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-}
+  .card-img-priority {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
 
-.card-info {
-  display: grid;
-  grid-template-columns: 1fr;
-  margin: 0px;
-  li {
+  .card-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 0;
+  }
+
+  .card-info li {
     list-style-type: none;
     margin: 5px;
   }
-}
 
-.card-title {
-  font-size: 20px;
-  font-weight: bold;
-  letter-spacing: 0.07rem;
-}
+  .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.07rem;
+  }
 
-.subsection-content {
-  width: 275px;
-  padding: 5px;
-}
+  .card-container {
+    margin: var(--margin);
+    display: grid;
+    gap: var(--gap);
+  }
 
-.detail-page-btn {
-  justify-self: flex-end;
-  background-color: var(--accent-color2);
-  color: var(--secondary-color);
-  border: none;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  padding: 10px;
-  cursor: pointer;
-  font-size: 12px;
-  transition: background-color 0.3s ease;
-  a {
+  .card-text,
+  .card-content,
+  .card-title,
+  .card-info li,
+  .card-content p,
+  .card-text p,
+  .card-header {
     color: var(--secondary-color);
-    align-self: center;
+  }
+
+  .card-btn {
+    background-color: var(--accent-color2);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    padding: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+
+  .card-btn:hover {
+    background-color: var(--primary-color);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--accent-color2);
+    width: 100%;
+    font-weight: bold;
+  }
+
+  .card-header #priority {
+    margin-left: auto;
+  }
+
+  .warn {
+    background-color: var(--warning);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    padding: var(--padding);
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+  }
+
+  .danger {
+    background-color: var(--danger);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    padding: var(--padding);
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s ease;
+  }
+
+  .warn:hover {
+    background-color: #a66d2b;
+  }
+
+  .danger:hover {
+    background-color: rgba(168, 53, 45, 0.9);
+  }
+
+  .task-actions {
+    margin-top: 15px;
     justify-self: center;
+    align-self: center;
+  }
+
+  .table-card-head {
+    background-color: var(--table-header-bg);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  th {
+    background-color: var(--table-header-bg);
+    color: var(--secondary-color);
+    padding: 5px;
+    padding-left: 10px;
+  }
+
+  td {
+    padding: 7px;
+  }
+  .no-subtasks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    color: var(--secondary-color);
+    font-weight: 900;
+    font-size: 1.1rem;
+    letter-spacing: 0.07rem;
   }
 }
 
-.detail-page-btn:hover {
-  background-color: #4e5e3a;
-}
+@media (min-width: 601px) {
+  .card {
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    width: 500px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+  }
 
-.table-btn {
-  border-radius: 12px;
-  padding: 7px;
-  margin: 5px;
-  background-color: var(--accent-color);
-  transition: background-color 0.3s ease;
-}
+  .subtask-card {
+    background-color: var(--accent-color2);
+    border-radius: var(--border-radius);
+    width: 500px;
+    padding: 30px;
+    margin: 20px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+  }
 
-.table-btn:hover {
-  background-color: #6b3e6a;
-}
+  .card-content {
+    color: var(--secondary-color);
+  }
 
-table {
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  text-align: left;
-  font-size: 11px;
-  color: var(--secondary-color);
-}
+  .card-img-container {
+    width: 150px;
+  }
 
-table th {
-  background-color: var(--table-header-bg);
-}
+  .task-image {
+    display: flex;
+    justify-self: flex-start;
+    align-self: flex-start;
+    width: 150px;
+  }
 
-table tr:nth-child(odd) {
-  background-color: var(--table-odd-bg);
-}
+  #priority {
+    display: flex;
+    justify-self: flex-end;
+    align-self: flex-start;
+    justify-content: center;
+    align-content: center;
+    border: solid;
+    border-radius: var(--border-radius);
+    background-color: var(--accent-color);
+    border-color: var(--secondary-color);
+    width: 100px;
+    border-width: 3px;
+    p {
+      margin: 5px;
+    }
+  }
 
-table tr:nth-child(even) {
-  background-color: var(--table-even-bg);
-}
+  .card-img-priority {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
 
-.subsection-title {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: center;
-  justify-content: space-evenly;
-  gap: 30px;
-}
-table td:not(:first-child) {
-  text-align: center;
-}
+  .card-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 0px;
+    li {
+      list-style-type: none;
+      margin: 5px;
+    }
+  }
 
-table th:not(:first-child) {
-  text-align: center;
-}
+  .card-title {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 0.07rem;
+  }
 
-.card {
-  background-color: var(--primary-color);
-  border-radius: var(--border-radius);
-  width: 250px;
-  gap: 15px;
-  display: flex;
-  flex-direction: column;
-  border: none;
-}
+  .subsection-content {
+    width: 450px;
+    padding: 10px;
+  }
 
-.card-content {
-  color: var(--secondary-color);
-  padding: 8px;
-  margin: 15px;
-}
+  .detail-page-btn {
+    justify-self: flex-end;
+    background-color: var(--accent-color2);
+    color: var(--secondary-color);
+    border: none;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    a {
+      color: var(--secondary-color);
+      align-self: center;
+      justify-self: center;
+    }
+  }
 
-.card-img-container,
-.task-image {
-  width: 80px;
-}
+  .detail-page-btn:hover {
+    background-color: #4e5e3a;
+  }
 
-#priority {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid var(--secondary-color);
-  border-radius: 10px;
-  background-color: var(--accent-color);
-  width: 50px;
-  height: 20px;
-  color: var(--secondary-color);
-  font-size: 10px;
-}
+  .table-btn {
+    border-radius: 12px;
+    padding: 10px;
+    margin: 10px;
+    background-color: var(--accent-color);
+    transition: background-color 0.3s ease;
+  }
 
-#priority p {
-  margin: 5px;
-}
+  .table-btn:hover {
+    background-color: #6b3e6a;
+  }
 
-.card-img-priority {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
+  table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+    color: var(--secondary-color);
+  }
 
-.card-info {
-  display: grid;
-  grid-template-columns: 1fr;
-  margin: 0;
-}
+  table th {
+    background-color: var(--table-header-bg);
+  }
 
-.card-info li {
-  list-style-type: none;
-  margin: 5px;
-}
+  table tr:nth-child(odd) {
+    background-color: var(--table-odd-bg);
+  }
 
-.card-title {
-  font-size: 18px;
-  font-weight: bold;
-  letter-spacing: 0.07rem;
-}
+  table tr:nth-child(even) {
+    background-color: var(--table-even-bg);
+  }
 
-.card-container {
-  margin: var(--margin);
-  display: grid;
-  gap: var(--gap);
-}
+  .subsection-title {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 40px;
+  }
+  table td:not(:first-child) {
+    text-align: center;
+  }
 
-.card-text,
-.card-content,
-.card-title,
-.card-info li,
-.card-content p,
-.card-text p,
-.card-header {
-  color: var(--secondary-color);
-}
+  table th:not(:first-child) {
+    text-align: center;
+  }
 
-.card-btn {
-  background-color: var(--accent-color2);
-  color: var(--secondary-color);
-  border: none;
-  border-radius: 5px;
-  padding: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
-}
+  .card {
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius);
+    width: 450px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    border: none;
+  }
 
-.card-btn:hover {
-  background-color: var(--primary-color);
-}
+  .card-content {
+    color: var(--secondary-color);
+    padding: 10px;
+    margin: 20px;
+  }
 
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--accent-color2);
-  width: 100%;
-  font-weight: bold;
-}
+  .card-img-container,
+  .task-image {
+    width: 120px;
+  }
 
-.card-header #priority {
-  margin-left: auto;
-}
+  #priority {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    background-color: var(--accent-color);
+    width: 75px;
+    height: 30px;
+    color: var(--secondary-color);
+    font-size: 12px;
+  }
 
-.warn {
-  background-color: var(--warning);
-  color: var(--secondary-color);
-  border: none;
-  border-radius: 5px;
-  padding: var(--padding);
-  cursor: pointer;
-  font-size: 12px;
-  transition: background-color 0.3s ease;
-}
+  #priority p {
+    margin: 5px;
+  }
 
-.danger {
-  background-color: var(--danger);
-  color: var(--secondary-color);
-  border: none;
-  border-radius: 5px;
-  padding: var(--padding);
-  cursor: pointer;
-  font-size: 12px;
-  transition: background-color 0.3s ease;
-}
+  .card-img-priority {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
 
-.warn:hover {
-  background-color: #a66d2b;
-}
+  .card-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 0;
+  }
 
-.danger:hover {
-  background-color: rgba(168, 53, 45, 0.9);
-}
+  .card-info li {
+    list-style-type: none;
+    margin: 5px;
+  }
 
-.task-actions {
-  margin-top: 15px;
-  justify-self: center;
-  align-self: center;
-}
+  .card-title {
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 0.07rem;
+  }
 
-.table-card-head {
-  background-color: var(--table-header-bg);
-  border-radius: var(--border-radius) var(--border-radius) 0 0;
-  width: 100%;
-  padding: 10px;
-  box-sizing: border-box;
-}
+  .card-container {
+    margin: var(--margin);
+    display: grid;
+    gap: var(--gap);
+  }
 
-th {
-  background-color: var(--table-header-bg);
-  color: var(--secondary-color);
-  padding: 5px;
-  padding-left: 10px;
-}
+  .card-text,
+  .card-content,
+  .card-title,
+  .card-info li,
+  .card-content p,
+  .card-text p,
+  .card-header {
+    color: var(--secondary-color);
+  }
 
-td {
-  padding: 7px;
-}
-.no-subtasks {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  color: var(--secondary-color);
-  font-weight: 900;
-  font-size: 1.1rem;
-  letter-spacing: 0.07rem;
+  .card-btn {
+    background-color: var(--accent-color2);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+
+  .card-btn:hover {
+    background-color: var(--primary-color);
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--accent-color2);
+    width: 100%;
+    font-weight: bold;
+  }
+
+  .card-header #priority {
+    margin-left: auto;
+  }
+
+  .warn {
+    background-color: var(--warning);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    padding: var(--padding);
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+
+  .danger {
+    background-color: var(--danger);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    padding: var(--padding);
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+
+  .warn:hover {
+    background-color: #a66d2b;
+  }
+
+  .danger:hover {
+    background-color: rgba(168, 53, 45, 0.9);
+  }
+
+  .task-actions {
+    margin-top: 20px;
+    justify-self: center;
+    align-self: center;
+  }
+
+  .table-card-head {
+    background-color: var(--table-header-bg);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+  }
+
+  th {
+    background-color: var(--table-header-bg);
+    color: var(--secondary-color);
+    padding: 10px;
+    padding-left: 15px;
+  }
+
+  td {
+    padding: 10px;
+  }
+  .no-subtasks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    color: var(--secondary-color);
+    font-weight: 900;
+    font-size: 1.3rem;
+    letter-spacing: 0.07rem;
+  }
+
+  .page-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .detail-page-btn {
+    justify-self: flex-end;
+    align-self: flex-end;
+  }
 }
