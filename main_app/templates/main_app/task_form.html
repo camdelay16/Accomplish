@@ -4,7 +4,7 @@
   href="{% static 'css/form.css' %}"
 />
 {% endblock %} {% block content %}
-
+<br />
 <div class="page-header">
   {% if task %}
   <h1>Edit {{ task.task_name }}</h1>
@@ -12,7 +12,7 @@
   <h1>Add a Task</h1>
   {% endif %}
 </div>
-
+<br />
 <form
   action=""
   method="post"
@@ -24,7 +24,7 @@
   </table>
   <button
     type="submit"
-    class="btn btn-success"
+    class="card-btn"
   >
     Submit!
   </button>

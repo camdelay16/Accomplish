@@ -1,18 +1,37 @@
+:root {
+  --primary-color: #396c91;
+  --secondary-color: #f3f2e6;
+  --accent-color: #81568a;
+  --accent-color2: #617453;
+  --danger: #f44336;
+  --warning: #c78b32;
+  --info: #002a49;
+  --success: #4a9b6a;
+  --border-radius: 20px;
+  --gap: 20px;
+  --padding: 10px;
+  --margin: 20px;
+  --shadow-color: #394331;
+  --table-odd-bg: #728961;
+  --table-even-bg: #606e57;
+  --table-header-bg: #4e5e3a;
+}
+
 section {
-  margin: 20px 5px 50px 5px; 
+  margin: 20px 5px 50px 5px;
 }
 
 .dashboard-btn {
   justify-self: flex-end;
-  border-radius: 15px;
   background-color: #617453;
   color: #f3f2e6;
   border: none;
-  box-shadow: 2px 2px 2px #394331;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
   padding: 10px;
-  width: 90px;
-  height: 40px;
-  margin: 10px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.3s ease;
   a {
     color: #f3f2e6;
     align-self: center;
@@ -20,14 +39,18 @@ section {
   }
 }
 
+.dashboard-btn:hover {
+  background-color: #4e5e42;
+}
+
 .dashboardtable {
   overflow: hidden;
   overflow-y: scroll;
-  height: 200px;
-  margin: 10px 0px 10px 0px;
+  height: 150px;
+  margin: 0px 0px 10px 0px;
 }
 
-.th.fixed {
+th {
   top: 0;
   z-index: 2;
   position: sticky;
@@ -48,4 +71,58 @@ section {
 
 .custom-table {
   font-size: 12px;
+}
+
+.table-card {
+  background-color: var(--accent-color2);
+  border-radius: var(--border-radius);
+  width: 300px;
+  padding: 10px;
+  gap: 10px;
+  margin: 5px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 12px;
+  width: 100%;
+  text-align: left;
+  font-size: 13px;
+  color: var(--secondary-color);
+  a {
+    color: var(--secondary-color);
+  }
+}
+
+.table-card-head {
+  background-color: var(--table-header-bg);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+table th {
+  background-color: var(--table-header-bg);
+  color: var(--secondary-color);
+  padding: 5px;
+  padding-left: 10px;
+}
+
+table tr:nth-child(odd) {
+  background-color: var(--table-odd-bg);
+}
+
+table tr:nth-child(even) {
+  background-color: var(--table-even-bg);
+}
+
+td {
+  padding: 7px;
+}
+
+td:first-child {
+  font-weight: bold;
 }

@@ -10,7 +10,7 @@
     <h2>Welcome, {{user.username}}</h2>
   </div>
 </section>
-
+<br />
 <section class="dashboard-tasks">
   <div class="header">
     <div class="title-btn-container">
@@ -20,29 +20,33 @@
       </button>
     </div>
   </div>
-  <div class="dashboardtable">
-    <table class="table table-striped">
-      <thead class="table-header">
-        <tr>
-          <th>Name</th>
-          <th>Priority</th>
-          <th>Due Date</th>
-        </tr>
-      </thead>
-      <tbody class="table-body">
-        {% for task in tasks %}
-        <tr>
-          <td>
-            <a href="{% url 'task-detail' task.id %}">{{task.task_name}}</a>
-          </td>
-          <td>{{task.priority}}</td>
-          <td>{{task.due_date}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+  <div class="table-card">
+    <div class="table-card-head"></div>
+    <div class="dashboardtable">
+      <table>
+        <thead class="table-header">
+          <tr>
+            <th>Name</th>
+            <th>Priority</th>
+            <th>Due Date</th>
+          </tr>
+        </thead>
+        <tbody class="table-body">
+          {% for task in tasks %}
+          <tr>
+            <td>
+              <a href="{% url 'task-detail' task.id %}">{{task.task_name}}</a>
+            </td>
+            <td>{{task.priority}}</td>
+            <td>{{task.due_date}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
+<br />
 
 <section class="dashboard-lists">
   <div class="header">
@@ -53,25 +57,28 @@
       </button>
     </div>
   </div>
-  <div class="dashboardtable">
-    <table class="table table-striped">
-      <thead class="table-header">
-        <tr>
-          <th>List</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody class="table-body">
-        {% for list in lists %}
-        <tr>
-          <td>
-            <a href="{% url 'list-detail' list.id %}">{{list.list_name}}</a>
-          </td>
-          <td>{{list.description}}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+  <div class="table-card">
+    <div class="table-card-head"></div>
+    <div class="dashboardtable">
+      <table>
+        <thead class="table-header">
+          <tr>
+            <th>List</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody class="table-body">
+          {% for list in lists %}
+          <tr>
+            <td>
+              <a href="{% url 'list-detail' list.id %}">{{list.list_name}}</a>
+            </td>
+            <td>{{list.description}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
   </div>
 </section>
 

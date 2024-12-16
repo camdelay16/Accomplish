@@ -70,7 +70,7 @@ def update_subtask(request, task_id, subtask_id):
 
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
-    fields = ['task_name', 'due_date', 'priority', 'note', 'list_key']
+    fields = ['task_name', 'due_date', 'priority', 'note', 'list_key', 'completed']
     success_url='/tasks/'
 
     def form_valid(self, form):

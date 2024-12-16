@@ -1,10 +1,16 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
-
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{% static 'css/form.css' %}"
+/>
+{% endblock %} {% block content %}
+<br />
 <div class="page-header">
   <h1>Delete List?</h1>
 </div>
+<br />
 <h2>Are you sure you want to delete {{ object.name }}?</h2>
-
+<br />
 <form
   action=""
   method="post"
@@ -13,13 +19,13 @@
   {% csrf_token %}
   <a
     href="{% url 'list-detail' list.id %}"
-    class="btn secondary"
+    class="warn"
   >
     Cancel
   </a>
   <button
     type="submit"
-    class="btn danger"
+    class="danger"
   >
     Yes - Delete!
   </button>

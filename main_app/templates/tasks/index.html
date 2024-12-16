@@ -14,7 +14,15 @@
   <div class="card">
     <h5 class="card-header">
       <div>{{ task.task_name }}</div>
-      <div id="priority">
+      <div
+        id="priority"
+        style="background-color: 
+      {% if task.priority == 'High' %}var(--danger)
+      {% elif task.priority == 'Medium' %}var(--warning)
+      {% elif task.priority == 'Low' %}var(--success)
+      {% else %}white
+      {% endif %};"
+      >
         <p>{{task.priority}}</p>
       </div>
     </h5>

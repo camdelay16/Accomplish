@@ -5,24 +5,23 @@
 />
 {% endblock %} {% block content %}
 
-<div class="card">
-  <div class="card-content">
-    <h2>{{ list.list_name }}</h2>
-    <p>{{list.description}}</p>
+<section class="card-container">
+  <div class="card">
+    <h5 class="card-header">
+      <div>{{ list.list_name }}</div>
+    </h5>
+    <div class="card-body">
+      <p class="card-text">{{list.description}}</p>
+      <button class="warn">
+        <a href="{% url 'list-update' list.id %}">Edit</a>
+      </button>
+      <button class="danger">
+        <a href="{% url 'list-delete' list.id %}">Delete</a>
+      </button>
+    </div>
   </div>
-  <div>
-    <a
-      href="{% url 'list-update' list.id %}"
-      class="btn warn"
-      >Edit</a
-    >
-    <a
-      href="{% url 'list-delete' list.id %}"
-      class="btn danger"
-      >Delete</a
-    >
-  </div>
-</div>
+</section>
+<br />
 
 <h3>Associated Tasks</h3>
 
@@ -33,7 +32,15 @@
     <div class="card">
       <h5 class="card-header">
         <div>{{ task.task_name }}</div>
-        <div id="priority">
+        <div
+          id="priority"
+          style="background-color: 
+        {% if task.priority == 'High' %}var(--danger)
+        {% elif task.priority == 'Medium' %}var(--warning)
+        {% elif task.priority == 'Low' %}var(--success)
+        {% else %}var(--info)
+        {% endif %};"
+        >
           <p>{{task.priority}}</p>
         </div>
       </h5>

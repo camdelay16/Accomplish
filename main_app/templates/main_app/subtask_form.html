@@ -4,7 +4,7 @@
   href="{% static 'css/form.css' %}"
 />
 {% endblock %} {% block content %}
-
+<br />
 <div class="page-header">
   {% if subtask %}
   <h1>Edit {{ subtask.subtask_name }} in Task: {{ task.task_name }}</h1>
@@ -29,7 +29,7 @@
     {{ form.as_p }}
     <button
       type="submit"
-      class="btn btn-success"
+      class="card-btn"
     >
       Submit
     </button>
