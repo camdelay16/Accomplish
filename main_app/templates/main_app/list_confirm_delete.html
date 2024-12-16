@@ -17,11 +17,8 @@
   class="form"
 >
   {% csrf_token %}
-  <a
-    href="{% url 'list-detail' list.id %}"
-    class="warn"
-  >
-    Cancel
+  <a href="{% url 'list-detail' list.id %}"
+    ><button class="warn">Cancel</button>
   </a>
   <button
     type="submit"

@@ -7,9 +7,9 @@
 
 <section class="page-header">
   <h1>All Tasks</h1>
-  <button class="card-btn">
-    <a href="{% url 'task-create' %}">New Task</a>
-  </button>
+  <a href="{% url 'task-create' %}"
+    ><button class="card-btn">New Task</button></a
+  >
 </section>
 
 <section class="tasks">
@@ -33,9 +33,9 @@
       <div class="card-body">
         <h6 class="card-text">Due: {{task.due_date}}</h6>
         <p class="card-text">{{ task.note }}</p>
-        <button class="card-btn">
-          <a href="{% url 'task-detail' task.id %}">View</a>
-        </button>
+        <a href="{% url 'task-detail' task.id %}"
+          ><button class="card-btn">View</button></a
+        >
       </div>
     </div>
     {% endfor %}

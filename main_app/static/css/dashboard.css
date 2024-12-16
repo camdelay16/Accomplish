@@ -21,6 +21,11 @@ section {
   margin: 20px 5px 50px 5px;
 }
 
+.dashboard-btn-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .dashboard-btn {
   justify-self: flex-end;
   background-color: #617453;
@@ -32,10 +37,10 @@ section {
   cursor: pointer;
   font-size: 12px;
   transition: background-color 0.3s ease;
+  right: 20px;
   a {
     color: #f3f2e6;
-    align-self: center;
-    justify-self: center;
+    justify-self: flex-end;
   }
 }
 
@@ -61,7 +66,7 @@ th {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   gap: 30px;
 }
 
@@ -129,7 +134,8 @@ td:first-child {
 
 @media (max-width: 768px) {
   .title-btn-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: 2fr;
+    justify-content: space-between;
     gap: 10px;
   }
 

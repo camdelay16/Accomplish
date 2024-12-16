@@ -17,10 +17,8 @@
   class="form"
 >
   {% csrf_token %}
-  <a
-    href="{% url 'task-detail' task.id %}"
-    class="warn"
-    >Cancel</a
+  <a href="{% url 'task-detail' task.id %}"
+    ><button class="warn">Cancel</button></a
   >
   <button
     type="submit"

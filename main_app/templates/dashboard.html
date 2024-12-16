@@ -15,9 +15,11 @@
   <div class="header">
     <div class="title-btn-container">
       <h3>All Tasks</h3>
-      <button class="dashboard-btn">
-        <a href="{% url 'task-create' %}">New Task</a>
-      </button>
+      <div class="dashboard-btn-container">
+        <a href="{% url 'task-create' %}"
+          ><button class="dashboard-btn">New Task</button></a
+        >
+      </div>
     </div>
   </div>
   <div class="table-card">
@@ -61,9 +63,11 @@
   <div class="header">
     <div class="title-btn-container">
       <h3>All Lists</h3>
-      <button class="dashboard-btn">
-        <a href="{% url 'list-create' %}">New List</a>
-      </button>
+      <div class="dashboard-btn-container">
+        <a href="{% url 'list-create' %}"
+          ><button class="dashboard-btn">New List</button></a
+        >
+      </div>
     </div>
   </div>
   <div class="table-card">

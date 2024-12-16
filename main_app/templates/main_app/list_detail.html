@@ -16,12 +16,12 @@
     </h5>
     <div class="card-body">
       <p class="card-text">{{list.description}}</p>
-      <button class="warn">
-        <a href="{% url 'list-update' list.id %}">Edit</a>
-      </button>
-      <button class="danger">
-        <a href="{% url 'list-delete' list.id %}">Delete</a>
-      </button>
+      <a href="{% url 'list-update' list.id %}"
+        ><button class="warn">Edit</button></a
+      >
+      <a href="{% url 'list-delete' list.id %}"
+        ><button class="danger">Delete</button></a
+      >
     </div>
   </div>
 </section>
@@ -53,9 +53,9 @@
       <div class="card-body">
         <h6 class="card-text">Due: {{task.due_date}}</h6>
         <p class="card-text">{{ task.note }}</p>
-        <button class="card-btn">
-          <a href="{% url 'task-detail' task.id %}">View</a>
-        </button>
+        <a href="{% url 'task-detail' task.id %}"
+          ><button class="card-btn">View</button></a
+        >
       </div>
     </div>
     {% endfor %}

@@ -30,12 +30,14 @@
   </button>
 </form>
 <div class="password-change-btn">
-  <button
-    type="submit"
-    class="card-btn"
+  <a href="{% url 'update-password' %}"
+    ><button
+      type="submit"
+      class="card-btn"
+    >
+      Update Password
+    </button></a
   >
-    <a href="{% url 'update-password' %}"> Update Password</a>
-  </button>
 </div>
 
 {% endblock %}

@@ -7,9 +7,9 @@
 
 <section class="page-header">
   <h1>All Lists</h1>
-  <button class="card-btn">
-    <a href="{% url 'list-create' %}">New List</a>
-  </button>
+  <a href="{% url 'list-create' %}"
+    ><button class="card-btn">New List</button></a
+  >
 </section>
 
 <section class="lists">
@@ -19,9 +19,9 @@
       <h5 class="card-header">{{ list.list_name }}</h5>
       <div class="card-body">
         <p class="card-text">{{ list.description }}</p>
-        <button class="card-btn">
-          <a href="{% url 'list-detail' list.id %}">View</a>
-        </button>
+        <a href="{% url 'list-detail' list.id %}"
+          ><button class="card-btn">View</button></a
+        >
       </div>
     </div>
     {% endfor %}

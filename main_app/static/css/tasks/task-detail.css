@@ -17,6 +17,33 @@
   --table-header-bg: #4e5e3a;
 }
 
+.btn-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-container-list {
+  display: flex;
+  justify-content: center;
+}
+
+.lists {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin: 20px;
+  justify-content: center;
+  align-content: center;
+}
+
+.add-list-form {
+  display: grid;
+  grid-template-columns: (1fr);
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 30px;
+}
+
 @media (max-width: 600px) {
   .card {
     background-color: var(--primary-color);
@@ -114,7 +141,6 @@
     cursor: pointer;
     font-size: 12px;
     transition: background-color 0.3s ease;
-    width: 100px;
     a {
       color: var(--secondary-color);
       align-self: center;
