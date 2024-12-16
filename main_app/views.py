@@ -11,7 +11,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django import forms
 from .models import Task, Subtask, List
-from .forms import SubtaskForm, TaskForm, SignUpForm, UpdateUserForm, ChangePasswordForm
+from .forms import SubtaskForm, TaskForm, SignUpForm, UpdateUserForm, ChangePasswordForm, SubtaskEditForm, TaskEditForm
 from django.db.models import Case, When, Value, IntegerField
 
 
@@ -37,15 +37,29 @@ def about(request):
 
 @login_required
 def task_index(request):
-    tasks = Task.objects.filter(user=request.user)
+    tasks = Task.objects.filter(user=request.user).annotate(
+        priority_order=Case(
+            When(priority='High', then=Value(1)),
+            When(priority='Medium', then=Value(2)),
+            When(priority='Low', then=Value(3)),
+            output_field=IntegerField(),
+        )
+    ).order_by('-due_date', 'priority_order')
     return render(request, 'tasks/index.html', {'tasks': tasks})
 
 @login_required
 def task_priority(request):
-    tasks = Task.objects.filter(user=request.user)
-    high_priority_tasks = tasks.filter(priority='High')
-    medium_priority_tasks = tasks.filter(priority='Medium')
-    low_priority_tasks = tasks.filter(priority='Low')
+    tasks = Task.objects.filter(user=request.user).annotate(
+        priority_order=Case(
+            When(priority='High', then=Value(1)),
+            When(priority='Medium', then=Value(2)),
+            When(priority='Low', then=Value(3)),
+            output_field=IntegerField(),
+        )
+    ).order_by('-due_date', 'priority_order')
+    high_priority_tasks = tasks.filter(priority='High').order_by('-due_date')
+    medium_priority_tasks = tasks.filter(priority='Medium').order_by('-due_date')
+    low_priority_tasks = tasks.filter(priority='Low').order_by('-due_date')
 
     user_agent = request.META['HTTP_USER_AGENT']
     if 'Mobile' in user_agent:
@@ -82,41 +96,20 @@ def task_priority(request):
 def task_detail(request, task_id):
     task = Task.objects.get(id=task_id)
     lists = List.objects.filter(user=request.user)
+    subtasks = task.subtask_set.all().order_by('-due_date', 'priority')
     selected_list_id = lists[0].id
     subtask_form = SubtaskForm()
     context = {
-        'task': task, 
+        'task': task,
+        'subtasks': subtasks, 
         'subtask_form': subtask_form, 
         'lists': lists, 
         'selected_list_id': selected_list_id
     }
     return render(request, 'tasks/detail.html', context)
-
-@login_required
-def add_subtask(request, task_id):
-    form = SubtaskForm(request.POST)
-    if form.is_valid():
-        new_subtask = form.save(commit=False)
-        new_subtask.task_id = task_id
-        new_subtask.save()
-    return redirect('task-detail', task_id=task_id)
-
-@login_required
-def update_subtask(request, task_id, subtask_id):
-    subtask = Subtask.objects.get(pk=subtask_id)
-    if request.method == 'POST':
-        form = SubtaskForm(request.POST, instance=subtask)
-        if form.is_valid():
-            form.save()
-            return redirect('task-detail', task_id=task_id)
-    else:
-        form = SubtaskForm(instance=subtask)
-    context = {'form': form}
-    return render(request, 'task_detail.html', context)
-
 class TaskCreate(LoginRequiredMixin, CreateView):
     model = Task
-    fields = ['task_name', 'due_date', 'priority', 'note', 'list_key', 'completed']
+    form_class = TaskForm
     success_url='/tasks/'
 
     def form_valid(self, form):
@@ -125,7 +118,7 @@ class TaskCreate(LoginRequiredMixin, CreateView):
 
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
-    fields = ['task_name', 'due_date', 'priority', 'note', 'list_key', 'completed']
+    form_class = TaskEditForm
 
 class TaskDelete(LoginRequiredMixin, DeleteView):
     model = Task
@@ -161,7 +154,7 @@ class ListDelete(LoginRequiredMixin, DeleteView):
 
 class SubtaskCreate(LoginRequiredMixin, CreateView):
     model = Subtask
-    fields = ['subtask_name', 'due_date', 'priority', 'completed']
+    form_class = SubtaskForm
     
     def get_success_url(self):
         return reverse('task-detail', args=[self.kwargs['task_id']]) 
@@ -178,7 +171,7 @@ class SubtaskCreate(LoginRequiredMixin, CreateView):
     
 class SubtaskUpdate(LoginRequiredMixin, UpdateView):
     model = Subtask
-    fields = ['subtask_name', 'due_date', 'priority', 'completed']
+    form_class = SubtaskEditForm
     
     def get_success_url(self):
         return reverse('task-detail', args=[self.kwargs['task_id']]) 

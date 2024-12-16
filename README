@@ -6,6 +6,10 @@
 
 Accomplish is a project management tool designed to help users track their tasks and achieve their goals efficiently.
 
+## Deployed Site
+
+https://accomplish-a23d7a73df7a.herokuapp.com/dashboard/
+
 ## Features
 
 - Task creation and management
@@ -52,6 +56,15 @@ Accomplish is a project management tool designed to help users track their tasks
    git push origin feature/your-feature-name
    ```
 5. Open a pull request.
+
+## Sources
+
+colormind.ai for color scheme
+Codemy.com to understand django and updating user profile and password
+Gemini to debug some views and help style Bootstrap
+Bootstrap for components
+w3 for some styling
+Canva for logo
 
 ## Contact
 

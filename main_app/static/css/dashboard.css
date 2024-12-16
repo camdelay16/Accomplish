@@ -180,3 +180,9 @@ td:first-child {
     padding: 5px;
   }
 }
+
+table,
+th,
+td {
+  border: none;
+}

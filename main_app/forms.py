@@ -22,10 +22,24 @@ class ChangePasswordForm(SetPasswordForm):
 		self.fields['new_password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
 
 class SubtaskForm(forms.ModelForm):
-    class Meta:
-        model = Subtask
-        fields = ['subtask_name', 'due_date', 'priority', 'note']
-        widgets = {
+	class Meta:
+		model = Subtask
+		fields = ['subtask_name', 'due_date', 'priority']
+		widgets = {
+            'due_date': forms.DateInput(
+                format=('%Y-%m-%d'),
+                attrs={
+                    'placeholder': 'Select a date',
+                    'type': 'date'
+                }
+            ),
+        }
+
+class SubtaskEditForm(forms.ModelForm):
+	class Meta:
+		model = Subtask
+		fields = ['subtask_name', 'due_date', 'priority', 'completed']
+		widgets = {
             'due_date': forms.DateInput(
                 format=('%Y-%m-%d'),
                 attrs={
@@ -38,7 +52,21 @@ class SubtaskForm(forms.ModelForm):
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = '__all__'
+        fields = ['task_name', 'due_date', 'priority', 'note', 'list_key', 'completed']
+        widgets = {
+            'due_date': forms.DateInput(
+                format=('%Y-%m-%d'),
+                attrs={
+                    'placeholder': 'Select a date',
+                    'type': 'date'
+                }
+            ),
+        }
+
+class TaskEditForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = ['task_name', 'due_date', 'priority', 'note', 'list_key', 'completed']
         widgets = {
             'due_date': forms.DateInput(
                 format=('%Y-%m-%d'),
