@@ -116,6 +116,11 @@ class TaskCreate(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['list_key'].queryset = List.objects.filter(user=self.request.user)
+        return form
+
 class TaskUpdate(LoginRequiredMixin, UpdateView):
     model = Task
     form_class = TaskEditForm
