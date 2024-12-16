@@ -12,6 +12,7 @@ from django.views.generic import ListView, DetailView
 from django import forms
 from .models import Task, Subtask, List
 from .forms import SubtaskForm, TaskForm, SignUpForm, UpdateUserForm, ChangePasswordForm
+from django.db.models import Case, When, Value, IntegerField
 
 
 # Create your views here.
@@ -20,7 +21,14 @@ class Home(LoginView):
 
 @login_required
 def dashboard(request):
-    tasks = Task.objects.filter(user=request.user)
+    tasks = Task.objects.filter(user=request.user).annotate(
+        priority_order=Case(
+            When(priority='High', then=Value(1)),
+            When(priority='Medium', then=Value(2)),
+            When(priority='Low', then=Value(3)),
+            output_field=IntegerField(),
+        )
+    ).order_by('-due_date', 'priority_order')
     lists = List.objects.filter(user=request.user)
     return render(request, 'dashboard.html', {'tasks': tasks, 'lists': lists})
 
