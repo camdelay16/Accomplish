@@ -1,4 +1,4 @@
-![Accomplish Logo](main_app/static/images/Accomplish_logo.svg)
+![Accomplish Logo](main_app/static/images/AccomplishGitHub.svg)
 
 # Accomplish
 
@@ -22,10 +22,6 @@ Trello Wireframes & ERD: https://trello.com/b/WdqVvUV4/accomplish
 ## Installation
 
 1. Fork and Clone the repository
-
-   ```
-
-   ```
 
 2. Navigate to the project directory:
    ```
