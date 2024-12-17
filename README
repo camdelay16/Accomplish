@@ -21,10 +21,12 @@ Trello Wireframes & ERD: https://trello.com/b/WdqVvUV4/accomplish
 
 ## Installation
 
-1. Clone the repository:
+1. Fork and Clone the repository
+
    ```
-   git clone https://github.com/yourusername/Accomplish.git
+
    ```
+
 2. Navigate to the project directory:
    ```
    cd Accomplish
@@ -42,25 +44,6 @@ Trello Wireframes & ERD: https://trello.com/b/WdqVvUV4/accomplish
 - whitenoise
 - gunicorn
 - dj-database-url
-
-##
-
-## Contributing
-
-1. Fork the repository.
-2. Create a new branch:
-   ```
-   git checkout -b feature/your-feature-name
-   ```
-3. Make your changes and commit them:
-   ```
-   git commit -m 'Add some feature'
-   ```
-4. Push to the branch:
-   ```
-   git push origin feature/your-feature-name
-   ```
-5. Open a pull request.
 
 ## Future Enhancements
 
