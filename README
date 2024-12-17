@@ -4,13 +4,13 @@
 
 ## Project Overview
 
-Accomplish is a project management tool designed to help users track their tasks and achieve their goals efficiently.
+Accomplish is a task management tool designed to help users track and organize their tasks, and achieve their goals efficiently.
 
 ## Deployed Site & Trello Project Links
 
-https://accomplish-a23d7a73df7a.herokuapp.com/dashboard/
+Deployed Site: https://accomplish-a23d7a73df7a.herokuapp.com/dashboard/
 
-https://trello.com/b/WdqVvUV4/accomplish
+Trello Wireframes & ERD: https://trello.com/b/WdqVvUV4/accomplish
 
 ## Features
 
@@ -34,13 +34,16 @@ https://trello.com/b/WdqVvUV4/accomplish
    npm install
    ```
 
-## Usage
+- django
+- psycopg2-binary
+- bootstrap@5.3.3
+- bootstrap-icons
+- python-dotenv
+- whitenoise
+- gunicorn
+- dj-database-url
 
-1. Start the development server:
-   ```
-   npm start
-   ```
-2. Open your browser and navigate to `http://localhost:3000`.
+##
 
 ## Contributing
 
@@ -59,14 +62,22 @@ https://trello.com/b/WdqVvUV4/accomplish
    ```
 5. Open a pull request.
 
+## Future Enhancements
+
+- Add ability for users to interact with each other - maybe send some positive encouragement
+- Update some of the styling to make it more visually appealing and fix carousel transition.
+- Extend the User profile more.
+- Add default list "My Tasks" and make it the default choice.
+- Add accordion to list detail view to break down task priority.
+
 ## Sources
 
-colormind.ai for color scheme
-Codemy.com to understand django and updating user profile and password
-Gemini to debug some views and help style Bootstrap
-Bootstrap for components
-w3 for some styling
-Canva for logo
+- Bootstrap for components
+- colormind.ai for color scheme
+- Codemy.com to understand django and learn more about updating user profile and password
+- Gemini to debug some views and help style Bootstrap
+- w3 for some styling
+- Canva for logo
 
 ## Contact
 
